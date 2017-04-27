@@ -121,7 +121,7 @@ test ('longx', function (t){
     t.deepEqual(longx('abxxterxtxxxa'), 3);
     t.deepEqual(longx('abxxxxterxtxxxa'), 4);
     t.deepEqual(longx('abterxta'), 1);
-    t.deepEqual(longx('abterta'), null);
+    t.deepEqual(longx('abterta'), 0);
     t.deepEqual(longx('4x'), 1);
 
 });
@@ -135,17 +135,18 @@ function longx(string){
         if(string[i] === 'x'){
             xCount++;
         } else {
-            xCount = 0;
-        }
 
         if(xCount > xRun){
             xRun = xCount;
         }
+            xCount = 0;
+        }
+
     }
 
-    if (xRun === 0){
-        return null;
-    }
+if (xCount > xRun){
+    xRun = xCount;
+}
 
 return xRun;
 
