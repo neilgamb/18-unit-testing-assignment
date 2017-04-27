@@ -163,41 +163,56 @@ console.log("====== 4 | guessWho =======================================")
  * from 1-100 that return true for each of the functions in the array.
  **/
 
-// let funcs = [
-//   function big(x) { return x > 80; },
-//   function odd(x) { return x % 2 === 1; },
-// ];
 
-// let result = guessWho(funcs);
-// // result is [81, 83, 85, 87, 89, 91, 93, 95, 97, 99] 
+// result is [81, 83, 85, 87, 89, 91, 93, 95, 97, 99] 
 
-// test ('guessWho', function (t){
-//     t.deepEqual(guessWho(funcs), result);
-// });
+test ('guessWho', function (t){
+
+    let funcs = [
+    function big(x) { return x > 80; },
+    function odd(x) { return x % 2 === 1; },
+    ];
+
+    let result = guessWho(funcs);
+
+    t.deepEqual(guessWho(funcs), result);
+});
+
+/**
+ *      Steps:
+ *          1. Create an array of numbers to keep
+ *          2. loop over 1 - 100
+ *          3. test each function in 'funcs' with index
+ *          4. if all trues, push to array. if not, move on
+ */
 
 
-// function guessWho(funcs){
+function guessWho(funcs){
 
-// let winners = [];
+    let keepers = [];
 
-// for (let i = 1; i <= 100; i++) {
+    for (let num = 1; num <= 100; num++){
+        let valid = true; // if this stays true, we push it
 
-//     let arrayTemp = [];
+        for (let i = 0; i < funcs.length; i++){
+            let success = funcs[i](num);
 
-//     for (let p = 0; p < funcs.length; p++){
+            if(!success){
+                valid = false;
+            }
 
-//         if (funcs[p(i)] === true){
+        }
 
-//                 arrayTemp.push(i);
-//         };
 
-//     }
+    if (valid){
+        keepers.push(num);
+    }
 
-//   }
+    }
 
-//   return arrayTemp;
+    return keepers;
 
-// }
+}
 
 // ================ 5 | subway =======================================
 console.log("====== 5 | subway =======================================")
